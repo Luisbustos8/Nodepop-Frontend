@@ -54,3 +54,10 @@
 .global-errors {
   padding: 20% 10%;
 }
+
+.title-register {
+  color: green;
+  text-align: center;
+  font-size: 30px;
+  padding-bottom: 10px;
+}

@@ -1,8 +1,9 @@
 
-const url = 'https://gist.github.com/Luisbustos8/8a451002765e4497e9c4e875fc72e104'
+const BASE_URL = 'http://127.0.0.1:8000';
 
 export default {
     getAdds: async () => {
+        const url = `${BASE_URL}/api/adds`;
         const response = await fetch(url);
         if (response.ok){
             const data = response.json();
@@ -11,5 +12,21 @@ export default {
             throw new Error(`HTTP Error: ${response.status}`)
         }
     },
+
+    registerUser: async (user) => {
+        const config = {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(user)
+        }
+        const url = `${BASE_URL}/auth/register`;
+        const response = await fetch(url, config);
+        const data = response.json();
+        if (response.ok) {
+            return data;
+        } else {
+            throw new Error(data);
+        }
+    }
     
 }
