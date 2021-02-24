@@ -1,17 +1,11 @@
 import DataServices from '../services/DataServices.js';
 import BaseController from './BaseController.js';
 
-export default class RegisterFormController extends BaseController {
+export default class LoginFormController extends BaseController {
 
     constructor(element){
         super(element);
         this.attachEventListener();
-    }
-
-    async makeAdd(user){
-        await DataServices.registerUser(user);
-        alert('Usuario creado con éxito!');
-        window.location.href = '/login.html';
     }
 
     attachEventListener(){
@@ -23,7 +17,9 @@ export default class RegisterFormController extends BaseController {
             }
             this.publish(this.events.START_LOADING);
             try {
-                await this.makePost(user)
+                const data = await DataServices.login(user);
+                DataServices.saveToken(data.accessToken);
+                window.location.href = '/';
             } catch (error) {
                 this.publish(this.events.ERROR, error);
             } finally {
