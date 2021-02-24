@@ -3,7 +3,7 @@ const BASE_URL = 'http://127.0.0.1:8000';
 
 export default {
     getAdds: async () => {
-        const url = `${BASE_URL}/api/adds`;
+        const url = `${BASE_URL}/api/messages`;
         const response = await fetch(url);
         if (response.ok){
             const data = response.json();
