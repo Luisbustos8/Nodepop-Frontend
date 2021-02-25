@@ -23,13 +23,8 @@ export default class AddsListController extends BaseController{
             console.error(error);
             this.publish(this.events.ERROR, error)
         } finally {
-            this.loader.hideLoading();
-        }
-        this.publish(this.events.FINISH_LOADING, {})
-    }
-
-    
-    
-   
+            this.publish(this.events.FINISH_LOADING, {})
+        }   
+    } 
 
 }

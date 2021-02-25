@@ -5,11 +5,17 @@ const TOKEN_KEY = 'token'
 export default {
 
     getAdds: async function() {
-        const url = `${BASE_URL}/api/adds`;
+        const url = `${BASE_URL}/api/adds?_expand=user`;
         const response = await fetch(url);
         if (response.ok){
-            const data = response.json();
-            return data;
+            const data = await response.json();
+            return data.map(add => {
+                return {
+                    message: add.message,
+                    date: add.createdAt,
+                    author: add.user.username
+                }
+            });
         } else {
             throw new Error(`HTTP Error: ${response.status}`)
         }
@@ -46,5 +52,14 @@ export default {
 
     getToken: async function(){
         return localStorage.getItem(TOKEN_KEY);
+    }, 
+    
+    isUserLogged: async function() {
+        const token = await this.getToken();
+        return token !== null;
+    },
+    saveAdd: async function(add){
+        const url = `${BASE_URL}/api/adds`;
+        return await this.post(url, add);
     }
 }

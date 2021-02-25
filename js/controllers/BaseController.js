@@ -1,16 +1,16 @@
-import Pubsub from '../services/Pubsub.js';
 import pubSub from '../services/Pubsub.js';
-
 
 export default class BaseController {
 
     constructor(element) {
         this.element = element;
-        this.pubSub = Pubsub;
+        this.pubSub = pubSub;
         this.events = {
             START_LOADING: 'startLoading',
             FINISH_LOADING: 'finishLoading',
-            ERROR: 'error'
+            ERROR: 'error',
+            SEARCH: 'search',
+            TWEET_DELETED: 'tweetDeleted'
         };
     }
 

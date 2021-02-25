@@ -9,19 +9,33 @@
 </head>
     <h1 class="title"> NODEPOP </h1>
 <body>
-    <div class="lds-dual-ring">
+    <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
     <div class="global-errors hidden"></div>
 
     <div class="container">
         <div class="columns">
-            <div class="column is-one-third">
+            <div class="column is-two-thirds">
                 <main class="add-list"></main>
             </div>
         </div>
     </div>
-        
+
+    <div class="new-add">
+        <a href="/new-add.html" class="button is-primary is-hidden new-add-button"> Subir anuncio </a>
+
+        <span class="is-hiidden login-register-buttons">
+            <a href="/login.html" class="button is-primary"> Login </a>
+            <a href="/register.html" class="button is-primary"> Registrate! </a>
+        </span>
+
+    </div>
 
     <script type="module" src="js/index.js"></script>
-    
 </body>
 </html>
