@@ -15,7 +15,7 @@ export default class NewAddFormController extends BaseController {
     async checkIfUserIsLogged(){
         const userIsLogged = await DataServices.isUserLogged();
         if (!userIsLogged) {
-            window.location.href = '/login.html'
+            window.location.href = '/login.html=/next'
         } else {
             this.publish(this.events.FINISH_LOADING);
         }
@@ -42,6 +42,10 @@ export default class NewAddFormController extends BaseController {
             const add = {
                 name: this.element.elements.name.value,
                 description: this.element.elements.description.value,
+                image: null,
+            }
+            if (this.element.elements.file.files.length >0) {
+                add.image = this.element.elements.file.files[0];
             }
             this.publish(this.events.START_LOADING);
             try {

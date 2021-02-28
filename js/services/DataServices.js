@@ -26,11 +26,16 @@ export default {
         }
     },
 
-    post: async function(url, postData) {
+    post: async function(url, postData, json=true) {
         const config = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(postData)
+        }
+        if (json) {
+            config.headers['Content-Type'] = 'application/json'
+        }else{
+            config.body = postData
         }
         const response = await fetch(url, config);
         const data = await response.json();
@@ -65,6 +70,18 @@ export default {
     },
     saveAdd: async function(add){
         const url = `${BASE_URL}/api/adds`;
+        if (add.image){
+            const imageURL = await this.uploadImage(add.image);
+            add.image = imageURL;
+        }
         return await this.post(url, add);
+    },
+    uploadImage: async function(image){
+        const form = new FormData()
+        form.append('file', image);
+
+        const url = '${BASE_URL}/upload';
+        const response = await this.post(url, form, false)
+
     }
 }
