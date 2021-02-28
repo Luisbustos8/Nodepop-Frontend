@@ -13,14 +13,11 @@ export default {
                 return {
                     message: add.message,
                     date: add.createdAt || add.updatedAt,
-                    author: add.user.username
+                    author: add.user.username,
+                    image: add.image || null
                 }
             });
-            const token = await this.getToken();
-            if (token) {
-                config.headers['Authorization'] = `Bearer ${token}`;
-
-            }
+           
         } else {
             throw new Error(`HTTP Error: ${response.status}`)
         }
@@ -80,7 +77,7 @@ export default {
         const form = new FormData()
         form.append('file', image);
 
-        const url = '${BASE_URL}/upload';
+        const url = `${BASE_URL}/upload`;
         const response = await this.post(url, form, false)
 
     }
