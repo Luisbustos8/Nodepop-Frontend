@@ -5,17 +5,22 @@ const TOKEN_KEY = 'token'
 export default {
 
     getAdds: async function() {
-        const url = `${BASE_URL}/api/adds?_expand=user`;
+        const url = `${BASE_URL}/api/adds?_expand=user&_sort=id&_order=desc`;
         const response = await fetch(url);
         if (response.ok){
             const data = await response.json();
             return data.map(add => {
                 return {
                     message: add.message,
-                    date: add.createdAt,
+                    date: add.createdAt || add.updatedAt,
                     author: add.user.username
                 }
             });
+            const token = await this.getToken();
+            if (token) {
+                config.headers['Authorization'] = `Bearer ${token}`;
+
+            }
         } else {
             throw new Error(`HTTP Error: ${response.status}`)
         }
