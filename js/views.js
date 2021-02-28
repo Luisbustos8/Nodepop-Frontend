@@ -1,6 +1,10 @@
 
 
 export const addView = (add) => {
+    let deleteButton = '';
+    if (add.canBeDeleted) {
+        deleteButtonHTML = '<button class="button is-danger>Borrar</button> '
+    }
     let imageHTML = '';
     if (add.image) {
         imageHTML = `<div class="card">
@@ -20,6 +24,8 @@ export const addView = (add) => {
                 ${add.description}
                 <br>
                 <time datetime="${add.date}">${add.date}</time>
+                <br>
+                ${deleteButton}
             </div>
         </div>
     </div>`

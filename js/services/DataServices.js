@@ -5,6 +5,7 @@ const TOKEN_KEY = 'token'
 export default {
 
     getAdds: async function() {
+        const currentUser = await this.getUser();
         const url = `${BASE_URL}/api/adds?_expand=user&_sort=id&_order=desc`;
         const response = await fetch(url);
         if (response.ok){
@@ -14,7 +15,9 @@ export default {
                     message: add.message,
                     date: add.createdAt || add.updatedAt,
                     author: add.user.username,
-                    image: add.image || null
+                    image: add.image || null,
+                    canBeDeleted: currentUser? currentUser.userId === add.userId : false
+
                 }
             });
            
@@ -80,5 +83,22 @@ export default {
         const url = `${BASE_URL}/upload`;
         const response = await this.post(url, form, false)
 
-    }
+    },
+     getUser: async function() {
+        try {
+            const token = await this.getToken();
+            const tokenParts = token.split('.');
+            if (tokenParts.length !== 3) {
+                return null;
+            }
+            const payload = tokenParts[1]; 
+            const jsonStr = atob(payload); 
+            const { userId, username } = JSON.parse(jsonStr); 
+            return { userId, username };
+        } catch (error) {
+            return null;
+        }
+    },
+
+    
 }

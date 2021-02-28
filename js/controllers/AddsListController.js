@@ -11,6 +11,9 @@ export default class AddsListController extends BaseController{
         for (const add of adds) {
             const addElement = document.createElement('div');
             addElement.innerHTML = addView(add);
+
+            
+
             this.element.appendChild(addElement);
         }
     }
