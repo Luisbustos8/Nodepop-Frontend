@@ -12,12 +12,13 @@ export default class AddsListController extends BaseController{
             const addElement = document.createElement('div');
             addElement.innerHTML = addView(add);
 
-            const deleteButton = div.querySelector('button');
+            const deleteButton = addElement.querySelector('button');
             if(deleteButton){
                 deleteButton.addEventListener('click', async ev => {
                     const deleteConfirmed = confirm('¿Seguro que quieres borrarlo?');
                     if (deleteConfirmed) {
                         await DataServices.deleteAdd(add);
+                        addElement.remove()
                     }
                 })
             }

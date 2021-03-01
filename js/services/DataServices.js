@@ -12,6 +12,7 @@ export default {
             const data = await response.json();
             return data.map(add => {
                 return {
+                    id: add.id,
                     message: add.message,
                     date: add.createdAt || add.updatedAt,
                     author: add.user.username,
