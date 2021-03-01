@@ -25,18 +25,33 @@ export default {
             throw new Error(`HTTP Error: ${response.status}`)
         }
     },
+    post: async function (url, postData, json=true) {
+        return await this.request('POST', url, postData, json)
+    }, 
+    delete: async function(url){
+        return await this.request('DELETE', url, {}) 
+    },
+    put: async function(url, putData, json=true){
+        return await this.request('PUT', putData, json)
+        
+    },
 
-    post: async function(url, postData, json=true) {
+    request: async function(method, url, postData, json=true) {
         const config = {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(postData)
+            method: method,
+            headers: {},
+            body: null
         }
         if (json) {
             config.headers['Content-Type'] = 'application/json'
         }else{
             config.body = postData
         }
+        const token = await this.getToken();
+        if (token) {
+            config.headers['Authorization'] = `Bearer ${token}`;
+        }
+
         const response = await fetch(url, config);
         const data = await response.json();
         if (response.ok) {
@@ -99,6 +114,10 @@ export default {
             return null;
         }
     },
+        deleteAdd: async function (add) {
+            const url = `${BASE_URL}/api/adds/${add.id}`;
+            return await this.delete(url);
+        }
+    }
 
     
-}
