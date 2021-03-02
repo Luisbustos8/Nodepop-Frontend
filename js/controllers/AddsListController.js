@@ -5,9 +5,16 @@ import { addView } from '../views.js';
 
 
 export default class AddsListController extends BaseController{
-
+    
+    constructor(element){
+        super(element);
+        this.subscribe(this.events.SEARCH, query => {
+            this.loadAdds(query)
+        })
+    }
 
     render(adds){
+        this.element.innerHTML = '';
         for (const add of adds) {
             const addElement = document.createElement('div');
             addElement.innerHTML = addView(add);
@@ -18,7 +25,8 @@ export default class AddsListController extends BaseController{
                     const deleteConfirmed = confirm('¿Seguro que quieres borrarlo?');
                     if (deleteConfirmed) {
                         await DataServices.deleteAdd(add);
-                        addElement.remove()
+                        addElement.remove();
+                        await this.loadAdds();
                     }
                 })
             }
@@ -26,10 +34,10 @@ export default class AddsListController extends BaseController{
             this.element.appendChild(addElement);
         }
     }
-    async loadAdds(){
+    async loadAdds(query=null){
         this.publish(this.events.START_LOADING, {})
         try {
-            const adds = await DataServices.getAdds();
+            const adds = await DataServices.getAdds(query);
             this.render(adds);
         } catch (error) {
             console.error(error);

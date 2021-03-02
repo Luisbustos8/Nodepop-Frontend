@@ -2,6 +2,7 @@ import AddsListController from './controllers/AddsListController.js';
 import LoaderController from './controllers/LoaderController.js';
 import ErrorController from './controllers/ErrorController.js'
 import NewAddOrLoggedController from './controllers/newAddOrLoggedController.js';
+import SearchController from './controllers/searchController.js';
 
 window.addEventListener('DOMContentLoaded', async (event) => {
 
@@ -17,4 +18,8 @@ window.addEventListener('DOMContentLoaded', async (event) => {
 
     const newAddElement = document.querySelector('.new-add');
     new NewAddOrLoggedController(newAddElement);
+
+    const searchInput = document.querySelector('input[type="search"]');
+    new SearchController(searchInput);
+
 });

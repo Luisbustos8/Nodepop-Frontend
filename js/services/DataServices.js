@@ -4,9 +4,12 @@ const TOKEN_KEY = 'token'
 
 export default {
 
-    getAdds: async function() {
+    getAdds: async function(query) {
         const currentUser = await this.getUser();
-        const url = `${BASE_URL}/api/adds?_expand=user&_sort=id&_order=desc`;
+        let url = `${BASE_URL}/api/adds?_expand=user&_sort=id&_order=desc`;
+        if (query){
+            url += `&q=${query}`
+        }
         const response = await fetch(url);
         if (response.ok){
             const data = await response.json();
