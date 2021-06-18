@@ -1,5 +1,5 @@
 import BaseController from './BaseController.js';
-import { debounce } from '../utils';
+import { debounce } from '../utils.js';
 
 export default class SearchController extends BaseController {
     constructor(element) {

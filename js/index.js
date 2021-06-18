@@ -2,16 +2,16 @@ import AddsListController from './controllers/AddsListController.js';
 import LoaderController from './controllers/LoaderController.js';
 import ErrorController from './controllers/ErrorController.js'
 import NewAddOrLoggedController from './controllers/newAddOrLoggedController.js';
-import SearchController from './controllers/searchController.js';
+import SearchController from './controllers/SearchController.js';
 
 window.addEventListener('DOMContentLoaded', async (event) => {
 
-    const loader = document.querySelector('.lds-dual-ring');
-    new LoaderController(loader);
+    const loader = document.querySelector('.lds-ring');
+    const loaderController = new LoaderController(loader);
     
     const addElement = document.querySelector('.add-list');
     const controllerAdd = new AddsListController(addElement);
-    controllerAdd.loadAdds()
+    controllerAdd.loadAdds();
 
     const errorsElement = document.querySelector('.global-errors');
     new ErrorController(errorsElement);

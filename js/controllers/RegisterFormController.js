@@ -21,9 +21,10 @@ export default class RegisterFormController extends BaseController {
                 username: this.element.elements.email.value,
                 password: this.element.elements.password.value
             }
+            
             this.publish(this.events.START_LOADING);
             try {
-                await this.makePost(user)
+                await this.makeAdd(user)
             } catch (error) {
                 this.publish(this.events.ERROR, error);
             } finally {

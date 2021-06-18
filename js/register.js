@@ -4,7 +4,7 @@ import ErrorController from './controllers/ErrorController.js';
 import RegisterFormController from './controllers/RegisterFormController.js';
 
 window.addEventListener('DOMContentLoaded', async (event) => {
-    const loader = document.querySelector('.lds-dual-ring');
+    const loader = document.querySelector('.lds-ring');
     const loaderController = new LoaderController(loader);
 
     const errorsElement = document.querySelector('.global-errors');

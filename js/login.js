@@ -5,7 +5,7 @@ import LoginFormController from './controllers/LoginFormController.js';
 
 
 window.addEventListener('DOMContentLoaded', async (event) => {
-    const loader = document.querySelector('.lds-dual-ring');
+    const loader = document.querySelector('.lds-ring');
     new LoaderController(loader);
 
     const errorsElement = document.querySelector('.global-errors');

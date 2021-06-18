@@ -36,6 +36,7 @@ export default class AddsListController extends BaseController{
     }
     async loadAdds(query=null){
         this.publish(this.events.START_LOADING, {})
+        
         try {
             const adds = await DataServices.getAdds(query);
             this.render(adds);
@@ -44,6 +45,8 @@ export default class AddsListController extends BaseController{
             this.publish(this.events.ERROR, error)
         } finally {
             this.publish(this.events.FINISH_LOADING, {})
+            
+           
         }   
     } 
 

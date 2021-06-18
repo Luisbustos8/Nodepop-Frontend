@@ -12,14 +12,14 @@ export default class BaseController {
             SEARCH: 'search',
             TWEET_DELETED: 'tweetDeleted',
         };
-    }
+    };
 
     subscribe(eventName, eventHandler) {
         this.pubSub.subscribe(eventName, eventHandler);
-    }
+    };
 
     publish(eventName, eventData) {
         this.pubSub.publish(eventName, eventData);
-    }
+    };
 
 }

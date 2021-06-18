@@ -16,12 +16,12 @@ export default {
             return data.map(add => {
                 return {
                     id: add.id,
+                    description: add.description,
                     message: add.message,
                     date: add.createdAt || add.updatedAt,
                     author: add.user.username,
                     image: add.image || null,
-                    canBeDeleted: currentUser? currentUser.userId === add.userId : false
-
+                    canBeDeleted: currentUser ? currentUser.userId === add.userId : false
                 }
             });
            
@@ -36,15 +36,14 @@ export default {
         return await this.request('DELETE', url, {}) 
     },
     put: async function(url, putData, json=true){
-        return await this.request('PUT', putData, json)
-        
+        return await this.request('PUT', putData, json)        
     },
 
     request: async function(method, url, postData, json=true) {
         const config = {
             method: method,
             headers: {},
-            body: null
+            body: JSON.stringify(postData)
         }
         if (json) {
             config.headers['Content-Type'] = 'application/json'
@@ -55,9 +54,14 @@ export default {
         if (token) {
             config.headers['Authorization'] = `Bearer ${token}`;
         }
+        console.log('postdata',postData
+        ,'url', url, 'metodo', method, 'cab', config.headers)
 
         const response = await fetch(url, config);
+        console.log('response bitch', response)
         const data = await response.json();
+        console.log('eeh', data)
+        console.log('ppp', postData)
         if (response.ok) {
             return data;
         } else {
@@ -68,6 +72,7 @@ export default {
     registerUser: async function (user) {
         const url = `${BASE_URL}/auth/register`;
         return await this.post(url, user)
+       
     },
     
     login: async function (user) {

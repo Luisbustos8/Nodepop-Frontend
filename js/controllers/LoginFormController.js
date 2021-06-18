@@ -17,8 +17,8 @@ export default class LoginFormController extends BaseController {
             }
             this.publish(this.events.START_LOADING);
             try {
-        const data = await dataService.login(user);
-        dataService.saveToken(data.accessToken);
+        const data = await DataServices.login(user);
+        DataServices.saveToken(data.accessToken);
         let next = '/';
         const queryParams = window.location.search.replace('?', ''); 
         const queryParamsParts = queryParams.split('=');

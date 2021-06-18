@@ -41,4 +41,4 @@ export const errorView = (errorMessage) =>{
                 ${errorMessage}
             </div>
         </article>`
-}
+};
