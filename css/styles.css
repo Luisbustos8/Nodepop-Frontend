@@ -52,6 +52,11 @@
   font-size: 50px;
   color: green;
 }
+.title2 {
+  text-align: center;
+  font-size: 20px;
+  color: green;
+}
 .title-new-add {
   text-align: center;
   font-size: 35px;
@@ -69,4 +74,26 @@
   text-align: center;
   font-size: 30px;
   padding-bottom: 10px;
+}
+
+.new-add {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
+
+.subtitle {
+  color: black;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: bold;
+  line-height: 1.25;
+}
+
+.container {
+  align-items: center;
+}
+
+.button {
+  margin: 40px;
 }

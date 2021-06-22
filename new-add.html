@@ -21,21 +21,30 @@
     <div class="global-errors hidden"></div>
     <div class="container">
         <div class="columns">
+            <a href="/" class=" button is-primary is-fixed  return-ad-list">Volver al listado</a>
             <div class="column is-two-thirds">
-                <h1 class="title-new-add">Publica tu anuncio</h1>
+                <h1 class="title2">Publica tu anuncio</h1>
                 <form class="form" action="">
                     <div class="field">
                         <label class="label">Nombre del producto</label>
-                        <input name="name" class="input" type="text" placeholder="Nombre del producto" required>
+                        <textarea name="name" class="input" type="text" placeholder="Nombre del producto" required ></textarea>
                         <label class="label">Describe tu producto</label>
-                        <textarea name="description" class="textarea" placeholder="Describe tu producto..." required></textarea>
-                        <input  type="file" name="file" accept="image/">
-                        <button class="button is-primary is-pulled-right" disabled>Publicar</button>
+                        <textarea name="description" class="textarea" placeholder="Describe tu producto..."></textarea>
+                        <label class='label'>Precio:</label>
+                        <input name='price' type='number' class="input" min="0">
+                        <select name="select" class="select">
+                            <option value='Venta'>Venta</option>
+                            <option value="Compro">Compro</option>
+                        </select>
+                        <br>
+                        <input  type="file" name="file" accept="image/*">
+                        <button class="button is-primary is-pulled-right">Publicar</button>
                     </div>
                 </form>   
             </div>
         </div>
     </div>
+    <script type="module" src="js/new-add.js"></script>
 <body>
     
 </body>

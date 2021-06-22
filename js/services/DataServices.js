@@ -16,15 +16,26 @@ export default {
             return data.map(add => {
                 return {
                     id: add.id,
-                    description: add.description,
-                    message: add.message,
+                    name: add.name.replace(/(<([^>]+)>)/gi, ""),
+                    description: add.description.replace(/(<([^>]+)>)/gi, ""),
                     date: add.createdAt || add.updatedAt,
-                    author: add.user.username,
+                    author: add.user.username.replace(/(<([^>]+)>)/gi, ""),
+                    price: add.price.replace(/(<([^>]+)>)/gi, ""),
+                    status: add.status,
                     image: add.image || null,
                     canBeDeleted: currentUser ? currentUser.userId === add.userId : false
                 }
             });
            
+        } else {
+            throw new Error(`HTTP Error: ${response.status}`)
+        }
+    },
+    getAddDetail: async function (id) {
+        const url = `${BASE_URL}/api/adds/${id}`;
+        const response = await fetch(url);
+        if (response.ok) {
+            return await response.json();
         } else {
             throw new Error(`HTTP Error: ${response.status}`)
         }
@@ -36,7 +47,7 @@ export default {
         return await this.request('DELETE', url, {}) 
     },
     put: async function(url, putData, json=true){
-        return await this.request('PUT', putData, json)        
+        return await this.request('PUT', url, putData, json)        
     },
 
     request: async function(method, url, postData, json=true) {
@@ -54,14 +65,10 @@ export default {
         if (token) {
             config.headers['Authorization'] = `Bearer ${token}`;
         }
-        console.log('postdata',postData
-        ,'url', url, 'metodo', method, 'cab', config.headers)
-
         const response = await fetch(url, config);
-        console.log('response bitch', response)
+       
         const data = await response.json();
-        console.log('eeh', data)
-        console.log('ppp', postData)
+        
         if (response.ok) {
             return data;
         } else {
@@ -100,12 +107,14 @@ export default {
         }
         return await this.post(url, add);
     },
+
     uploadImage: async function(image){
         const form = new FormData()
         form.append('file', image);
 
         const url = `${BASE_URL}/upload`;
         const response = await this.post(url, form, false)
+        return response.path;
 
     },
      getUser: async function() {
@@ -116,6 +125,7 @@ export default {
                 return null;
             }
             const payload = tokenParts[1]; 
+           
             const jsonStr = atob(payload); 
             const { userId, username } = JSON.parse(jsonStr); 
             return { userId, username };
@@ -127,6 +137,9 @@ export default {
             const url = `${BASE_URL}/api/adds/${add.id}`;
             return await this.delete(url);
         }
+
     }
+
+    
 
     

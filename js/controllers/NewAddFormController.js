@@ -36,21 +36,24 @@ export default class NewAddFormController extends BaseController {
                 button.setAttribute('disabled', true);
             }
         });
-
+        
         this.element.addEventListener('submit', async event => {
             event.preventDefault()
             const add = {
                 name: this.element.elements.name.value,
                 description: this.element.elements.description.value,
+                price: this.element.elements.price.value,
+                status: this.element.elements.select.value,
                 image: null,
             }
-            if (this.element.elements.file.files.length >0) {
+           
+            if (this.element.elements.file.files.length > 0) {
                 add.image = this.element.elements.file.files[0];
             }
             this.publish(this.events.START_LOADING);
             try {
                 await DataServices.saveAdd(add);
-                window.location.href = '?/mensaje=AnuncioOK'
+                window.location.href = '/?mensaje=AnuncioOK'
             } catch (error) {
                 this.publish(this.events.ERROR, error)
             } finally {

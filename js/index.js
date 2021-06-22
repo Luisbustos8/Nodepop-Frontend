@@ -7,7 +7,7 @@ import SearchController from './controllers/SearchController.js';
 window.addEventListener('DOMContentLoaded', async (event) => {
 
     const loader = document.querySelector('.lds-ring');
-    const loaderController = new LoaderController(loader);
+    new LoaderController(loader);
     
     const addElement = document.querySelector('.add-list');
     const controllerAdd = new AddsListController(addElement);
