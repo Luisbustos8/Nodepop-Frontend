@@ -7,7 +7,6 @@ export default class  AdDetailedInfoController extends BaseController{
     render(add){ 
         const article = document.createElement("article"); 
         article.innerHTML = addDetail(add);
-        console.log(add.name.length)
             
         this.element.appendChild(article);     
     }
