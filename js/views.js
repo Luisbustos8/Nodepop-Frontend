@@ -100,4 +100,4 @@ export const addDetail = (add) => {
     <div class="on-sale"> ${status} ${add.price} € </div>
     <div class="description">${add.description}</div>
     </div>`
-}
+};

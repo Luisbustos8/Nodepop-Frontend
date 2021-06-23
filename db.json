@@ -21,13 +21,13 @@
       "id": 2
     },
     {
-      "name": "Coche",
-      "description": "Lo quiero como el de la foto, si nadie me puede dar algo igual, NO SE MOLESTEN EN CONTESTARME ",
+      "name": "Busco profesor de tiro ",
+      "description": "Hace unos años me embarque en un proceso llamado \"The Process\" y seleccionamos en 1era ronda a este jugadorazo. Cinco años después nos hemos dado cuenta que no sabe tirar de 3. Necesitamos un profe que le ayude. ",
       "price": "30",
       "status": "Compro",
-      "image": "http://127.0.0.1:8000//file-1624391115054.jpeg",
+      "image": "http://127.0.0.1:8000//file-1624428179161.jpeg",
       "userId": 1,
-      "updatedAt": "2021-06-22T19:45:15.077Z",
+      "updatedAt": "2021-06-23T06:02:59.182Z",
       "id": 3
     }
   ],
@@ -66,6 +66,11 @@
       "username": "admin1@example.com",
       "password": "$2b$10$0XbLb/3YuQks2mI4f7C0SeyMvVOqukrsL.G5Z0yPTPoxSOs9.iDjS",
       "id": 7
+    },
+    {
+      "username": "eustaquio@xn--gmia-jqa.com",
+      "password": "$2b$10$qrqT6X/ncw2OYnEMKfwlGOQOkpmnqcxrD.8E3ZwFIzNzVTlct0l92",
+      "id": 8
     }
   ]
 }

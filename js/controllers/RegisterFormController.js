@@ -1,5 +1,5 @@
-import DataServices from '../services/DataServices.js';
 import BaseController from './BaseController.js';
+import DataServices from '../services/DataServices.js';
 
 export default class RegisterFormController extends BaseController {
 
@@ -21,7 +21,6 @@ export default class RegisterFormController extends BaseController {
                 username: this.element.elements.email.value,
                 password: this.element.elements.password.value
             }
-            
             this.publish(this.events.START_LOADING);
             try {
                 await this.makeAdd(user)

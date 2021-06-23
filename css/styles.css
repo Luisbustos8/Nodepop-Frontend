@@ -97,3 +97,9 @@
 .button {
   margin: 40px;
 }
+.anuncio {
+  align-items: center;
+  margin-left: 400px;
+  height: 900px;
+  width: 800px;
+}

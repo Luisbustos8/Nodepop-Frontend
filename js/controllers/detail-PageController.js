@@ -6,7 +6,8 @@ export default class  AdDetailedInfoController extends BaseController{
 
     render(add){ 
         const article = document.createElement("article"); 
-        article.innerHTML = addDetail(add); 
+        article.innerHTML = addDetail(add);
+        console.log(add.name.length)
             
         this.element.appendChild(article);     
     }
@@ -14,13 +15,13 @@ export default class  AdDetailedInfoController extends BaseController{
     async loadDetail(query = null){
         this.publish(this.events.START_LOADING, {})
         try {
-            const id = location.search.split('?id=')[1];
-            
+            const id = location.search.split('?id=')[1]; 
             const detailAdd = await DataServices.getAddDetail(id);
             this.render(detailAdd);
+  
         } catch (error) {
             console.error(error)
-            this.publish(this.events.ERROR, error);
+            this.publish(this.events.ERROR, '!ANUNCIO NO ENCONTRADO¡  Por favor regrese al listado');
         } finally {
             this.publish(this.events.FINISH_LOADING, {})
         }
