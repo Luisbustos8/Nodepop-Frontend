@@ -40,10 +40,10 @@ export default class NewAddFormController extends BaseController {
         this.element.addEventListener('submit', async event => {
             event.preventDefault()
             const add = {
-                name: this.element.elements.name.value,
-                description: this.element.elements.description.value,
-                price: this.element.elements.price.value,
-                status: this.element.elements.select.value,
+                name: this.element.elements.name.value.replace(/(<([^>]+)>)/gi, ""),
+                description: this.element.elements.description.value.replace(/(<([^>]+)>)/gi, ""),
+                price: this.element.elements.price.value.replace(/(<([^>]+)>)/gi, ""),
+                status: this.element.elements.select.value.replace(/(<([^>]+)>)/gi, ""),
                 image: null,
             }
            
